@@ -21,21 +21,32 @@ blocos = re.split('\n\n' , f.read())
     
 dictt = {}
 c = re.compile(r'@(.+){(.+),')
-a = re.compile(r'(?i)author *= *({{|{|")([^}"]+)(}}|}|"),')
+a = re.compile(r'(?i:author) *= *({{|{|")([^}"]+)(}}|}|"),')
 
 for bloco in blocos:
     if m:= c.search(bloco) :
         cc = m.group(2)
     if ma:= a.search(bloco) :
         au = re.split(r'[\n\t ]and[\n\t ]', ma.group(2) )
+        #print(au)
+
+        #au = [re.sub('(.+),(.+)', '\2 \1', i) for i in au]
+        #print(au)
+        
         for e in au:
-            e = re.sub(r'(.+),(.+)', '\2 \1', e)
+            if re.search(',' , e) : 
+                #print(e)
+                #e = re.sub('([A-Za-z\. ])+,([A-Za-z\. ])+ ', '\2 \1', e)
+                m = re.findall('(.+),(.+)', e)
+                (p,f2) = m[0]
+                e = re.sub(r'[^,]+', f'{f2}', e)
+                e = re.sub(r',(.+)', f' {p}', e)
             res = re.sub('[ \n\t]+' , ' ', e.strip())
             res = remove_accents(res)
-            if res in dictt:
+            if res in dictt and cc not in dictt[res]:
                 dictt[res].append(cc)
-            else :
-                dictt.update({res : [cc]})
+            elif res not in dictt :
+                dictt[res] = [cc]
 
 
 for i in sorted(dictt):
