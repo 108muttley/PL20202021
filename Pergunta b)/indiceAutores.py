@@ -29,6 +29,7 @@ for bloco in blocos:
     if ma:= a.search(bloco) :
         au = re.split(r'[\n\t ]and[\n\t ]', ma.group(2) )
         for e in au:
+            e = re.sub(r'(.+),(.+)', '\2 \1', e)
             res = re.sub('[ \n\t]+' , ' ', e.strip())
             res = remove_accents(res)
             if res in dictt:
@@ -36,8 +37,10 @@ for bloco in blocos:
             else :
                 dictt.update({res : [cc]})
 
+
 for i in sorted(dictt):
     print(i + ": ",dictt[i])
+
 
 
 f.close()

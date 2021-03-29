@@ -1,5 +1,0 @@
-graph autores { 
-	 a -- b; 
-	 b -- c; 
-	 a --c;
-} 

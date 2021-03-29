@@ -1,0 +1,13 @@
+graph{
+	"Tomaz Kosar" -- "Marjan Mernik"
+	"Tomaz Kosar" -- "Pedro Henriques"
+	"Tomaz Kosar" -- "Maria João Varanda"
+	"Tomaz Kosar" -- "Viljem Zumer"
+	"Tomaz Kosar" -- "Pedro Rangel Henriques"
+	"Tomaz Kosar" -- "Daniela da Cruz"
+	"Tomaz Kosar" -- "Maria João Varanda Pereira"
+	"Tomaz Kosar" -- "Nuno Oliveira"
+	"Tomaz Kosar" -- "Matej Crepinsek"
+	"Tomaz Kosar" -- "Daniela
+da Cruz"
+}
