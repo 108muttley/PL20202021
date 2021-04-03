@@ -5,9 +5,10 @@ def query2() :
     f = open('exemplo-utf8.bib')
     blocos = re.split('\n\n' , f.read())    
     dictt = {}
-    c = re.compile(r'@(.+){(.+),')
-    a = re.compile(r'(?i:author) *= *({{|{|")([^}"]+)(}}|}|"),')
+    c = re.compile(r'@(.+){(.+),')  #ER para encontrar as chaves de citação
+    a = re.compile(r'(?i:author) *= *({{|{|")([^}"]+)(}}|}|"),') #ER para encontrar os autores
 
+    #ciclo que associa a cada autor uma lista de chaves de citação 
     for bloco in blocos:
         if m:= c.search(bloco) :
             cc = m.group(2)
@@ -26,6 +27,7 @@ def query2() :
                     dictt[res].append(cc)
                 elif res not in dictt :
                     dictt[res] = [cc]
+
     print('\nÍndice:\n')
     for i in sorted(dictt):
         print(i + ": ",dictt[i])

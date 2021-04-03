@@ -5,10 +5,11 @@ def query4() :
     f2 = open('new.dot' , 'w') #Ficheiro dot para fazer o grafo
     autor = input ("Enter author :") #Guarda o autor escolhido pelo utilizador 
     autores = {autor : []}
-    blocos = re.split('\n\n' , f.read())
+    blocos = re.split('\n\n' , f.read()) # Divide o ficheiro em registos 
 
-    a = re.compile(r'(?i)author *= *({{|{|")([^}"]+)(}}|}|"),')
+    a = re.compile(r'(?i)author *= *({{|{|")([^}"]+)(}}|}|"),') 
 
+    #ciclo que associa ao autor escolhido os autores com quem trabalhou
     for bloco in blocos :
         if ma:= a.search(bloco) :
             au = re.split(r'[\n\t ]and[\n\t ]', ma.group(2) )
@@ -25,6 +26,7 @@ def query4() :
     if(len(autores[autor]) == 0) :
         print(f'Autor \"{autor}\" não existe na base de dados ou não costuma publicar com nenhum dos autores nesta base de dados.\n Grafo vazio. \n  ')
 
+    #Escreve o grafo num ficheiro .dot
     else:
         f2.write('graph{\n')
         for elem in autores[autor] :
